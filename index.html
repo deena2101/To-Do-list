@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h2>Good <span id="greeting-time">Evening</span>, <span id="user-name">User</span></h2>
+      <div class="quote-section">
+        <p id="quote-text">Loading inspiration...</p>
+      </div>
+    </header>
+
+    <section class="date-picker">
+      <p class="date" id="current-date">Loading date...</p>
+    </section>
+
+    <section class="calendar-section">
+      <label for="selected-date">Select Date:</label>
+      <input type="date" id="selected-date" />
+    </section>
+
+    <section class="task-columns">
+      <div class="tasks-section">
+        <h3>Tasks for Selected Date</h3>
+        <div class="task-list" id="task-list"></div>
+
+      </div>
+
+      <div class="do-later-section">
+        <h3>Do Later</h3>
+        <div class="later-task-list"></div>
+      </div>
+    </section>
+
+    <!-- Single global "+" button -->
+    <button class="add-btn" id="add-task-btn">+</button>
+  </div>
+
+  <!-- Task Popup -->
+  <div class="popup-overlay" id="popup" role="dialog" aria-labelledby="popup-title">
+    <div class="popup">
+      <h3 id="popup-title">Add/Edit Task</h3>
+      <input type="text" id="task-title" placeholder="Task title" />
+      <input type="text" id="task-time" placeholder="Time (e.g., 10:00 AM)" />
+      <label style="display: block; margin: 10px 0;">
+        <input type="checkbox" id="do-later-checkbox" />
+        Add to "Do Later"
+      </label>
+      <button id="save-task">Save Task</button>
+      <button id="close-popup">Cancel</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

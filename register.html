@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-box">
+      <h2>Register</h2>
+      <form id="register-form">
+        <input type="text" id="reg-username" placeholder="Username" required />
+        <input type="password" id="reg-password" placeholder="Password" required />
+        <input type="password" id="reg-confirm" placeholder="Confirm Password" required />
+        <button type="submit">Register</button>
+        <p id="register-error" class="error-message"></p>
+      </form>
+      <p class="register-redirect">
+        Already have an account? <a href="login.html">Log in</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("register-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("reg-username").value.trim();
+      const password = document.getElementById("reg-password").value;
+      const confirm = document.getElementById("reg-confirm").value;
+      const errorBox = document.getElementById("register-error");
+
+      if (password !== confirm) {
+        errorBox.textContent = "Passwords do not match.";
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const exists = users.some(user => user.username === username);
+
+      if (exists) {
+        errorBox.textContent = "Username already exists.";
+      } else {
+        users.push({ username, password });
+        localStorage.setItem("users", JSON.stringify(users));
+        alert("Registration successful! Please log in.");
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+</body>
+</html>
+
